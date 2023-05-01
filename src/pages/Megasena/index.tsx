@@ -1,22 +1,15 @@
 import styled from "styled-components";
-import { Titulo } from "../../components/Titulo";
 import TrevoMegaSena from '../../assets/trevo-megasena.png';
-import TrevoLotoFacil from '../../assets/trevo-lotofacil.png';
+import { Titulo } from "../../components/Titulo";
+import numeral from "numeral";
 import { Descricao } from "../../components/Descricao";
-import { ListaNumerosMegaSena } from "../../components/ListaNumerosMegaSena";
 import { Divisoria } from "../../components/Divisoria";
+import { ListaNumerosMegaSena } from "../../components/ListaNumerosMegaSena";
 import { useContexto } from "../../hooks";
-import numeral from 'numeral';
-import 'numeral/locales/pt-br';
 import { LoteriaProps } from "../../types";
-import { ListaNumerosLotoFacil } from "../../components/ListaNumerosLotoFacil";
-import { useEffect } from "react";
-import ResultadoMegasena from "../Megasena";
 
-export default function Resultados () {
-    const {lotofacil, megasena} = useContexto();
-
-    numeral.locale('pt-br');      
+export default function Megasena () {
+    const {megasena} = useContexto();
 
     const acumulou = (sena: LoteriaProps) => {
         if (sena.acumulado) {
@@ -24,50 +17,42 @@ export default function Resultados () {
         }
         return `${sena.quantidadeGanhadores} GANHADORES`
     }
-
-    useEffect(() => {
-        if(megasena.dataApuracao) {
-            console.log('tem')
-        } else {
-            console.log('n tem')
-        }
-        // console.log(megasena)
-    }, [megasena])
+    
     return(
-        <div>
-           <ResultadoMegasena /> 
+        <>
             <ResultadoStl>
-                {/* lotofacil */}
+                {/* megasena */}
                 <LeftStl>
                     <TituloStl>
-                        <LogoStl src={TrevoLotoFacil} alt='Mega-sena' />
-                        <Titulo cor="roxo" tamanho="grande">LOTOFÁCIL</Titulo>
+                        <LogoStl src={TrevoMegaSena} alt='Mega-sena' />
+                        <Titulo cor="verde" tamanho="grande">MEGA-SENA</Titulo>
                     </TituloStl>
                     <LeftContentStl>
                         <Descricao>
-                            {`Estimativa de prêmio do próximo concurso. Sorteio em: ${lotofacil.dataProximoConcurso}`}
+                            {`Estimativa de prêmio do próximo concurso. Sorteio em: ${megasena.dataProximoConcurso}`}
                         </Descricao>
                         <ValorStl>
-                            <Titulo cor="roxo" tamanho="medio">
-                                {`R$${numeral(lotofacil.valorEstimadoProximoConcurso).format('0,0.00')}`}
+                            <Titulo cor="verde" tamanho="medio">
+                                {`R$${numeral(megasena.valorEstimadoProximoConcurso).format('0,0.00')}`}
                             </Titulo>
                         </ValorStl>
                     </LeftContentStl>
                 </LeftStl>
                 <RightStl>
-                    <ListaNumerosLotoFacil lista={lotofacil.dezenas} />
+                    <ListaNumerosMegaSena lista={megasena.dezenas} />
                     <GanhadoresStl>
                         <Titulo cor="azul" tamanho="grande">
-                            {acumulou(lotofacil)}
+                            {acumulou(megasena)}
                         </Titulo>
                     </GanhadoresStl>
                     <GanhadoresStl>
-                        <Descricao>{`Concurso ${lotofacil.numeroDoConcurso} - ${lotofacil.dataPorExtenso}`}</Descricao>
+                        <Descricao>{`Concurso ${megasena.numeroDoConcurso} - ${megasena.dataPorExtenso}`}</Descricao>
                     </GanhadoresStl>
                 </RightStl>
             </ResultadoStl>
-        </div>
-    );
+            <DivisoriaStl><Divisoria /></DivisoriaStl>
+        </>
+    )
 }
 
 const ResultadoStl = styled.div`
