@@ -7,9 +7,10 @@ import { Divisoria } from "../../components/Divisoria";
 import { useContexto } from "../../hooks";
 import { LoteriaProps } from "../../types";
 import { ListaNumerosLotoFacil } from "../../components/ListaNumerosLotoFacil";
+import { Carregando } from "../../components/Carregando";
 
-export default function Lotofacil () {
-    const {lotofacil} = useContexto();
+export default function Lotofacil() {
+    const { lotofacil } = useContexto();
 
     const acumulou = (sena: LoteriaProps) => {
         if (sena.acumulado) {
@@ -17,40 +18,44 @@ export default function Lotofacil () {
         }
         return `${sena.quantidadeGanhadores} GANHADORES`
     }
-    
-    return(
+
+    return (
         <>
-            <ResultadoStl>
-                {/* lotofacil */}
-                <LeftStl>
-                    <TituloStl>
-                        <LogoStl src={TrevoLotoFacil} alt='Mega-sena' />
-                        <Titulo cor="roxo" tamanho="grande">LOTOFÁCIL</Titulo>
-                    </TituloStl>
-                    <LeftContentStl>
-                        <Descricao>
-                            {`Estimativa de prêmio do próximo concurso. Sorteio em: ${lotofacil.dataProximoConcurso}`}
-                        </Descricao>
-                        <ValorStl>
-                            <Titulo cor="roxo" tamanho="medio">
-                                {`R$${numeral(lotofacil.valorEstimadoProximoConcurso).format('0,0.00')}`}
-                            </Titulo>
-                        </ValorStl>
-                    </LeftContentStl>
-                </LeftStl>
-                <RightStl>
-                    <ListaNumerosLotoFacil lista={lotofacil.dezenas} />
-                    <GanhadoresStl>
-                        <Titulo cor="azul" tamanho="grande">
-                            {acumulou(lotofacil)}
-                        </Titulo>
-                    </GanhadoresStl>
-                    <GanhadoresStl>
-                        <Descricao>{`Concurso ${lotofacil.numeroDoConcurso} - ${lotofacil.dataPorExtenso}`}</Descricao>
-                    </GanhadoresStl>
-                </RightStl>
-            </ResultadoStl>
-            <DivisoriaStl><Divisoria /></DivisoriaStl>
+            {
+                lotofacil.dataApuracao ? <>
+                    <ResultadoStl>
+                        {/* lotofacil */}
+                        <LeftStl>
+                            <TituloStl>
+                                <LogoStl src={TrevoLotoFacil} alt='Mega-sena' />
+                                <Titulo cor="roxo" tamanho="grande">LOTOFÁCIL</Titulo>
+                            </TituloStl>
+                            <LeftContentStl>
+                                <Descricao>
+                                    {`Estimativa de prêmio do próximo concurso. Sorteio em: ${lotofacil.dataProximoConcurso}`}
+                                </Descricao>
+                                <ValorStl>
+                                    <Titulo cor="roxo" tamanho="medio">
+                                        {`R$${numeral(lotofacil.valorEstimadoProximoConcurso).format('0,0.00')}`}
+                                    </Titulo>
+                                </ValorStl>
+                            </LeftContentStl>
+                        </LeftStl>
+                        <RightStl>
+                            <ListaNumerosLotoFacil lista={lotofacil.dezenas} />
+                            <GanhadoresStl>
+                                <Titulo cor="azul" tamanho="grande">
+                                    {acumulou(lotofacil)}
+                                </Titulo>
+                            </GanhadoresStl>
+                            <GanhadoresStl>
+                                <Descricao>{`Concurso ${lotofacil.numeroDoConcurso} - ${lotofacil.dataPorExtenso}`}</Descricao>
+                            </GanhadoresStl>
+                        </RightStl>
+                    </ResultadoStl>
+                    <DivisoriaStl><Divisoria /></DivisoriaStl>
+                </> :
+                    <Carregando />}
         </>
     )
 }
@@ -80,7 +85,7 @@ const TituloStl = styled.span`
     margin-bottom: 20px;
 `;
 
-const LeftContentStl = styled.div `
+const LeftContentStl = styled.div`
     margin-left: 48px;
     display: flex;
     flex-direction: column;

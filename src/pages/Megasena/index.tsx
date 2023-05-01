@@ -7,9 +7,10 @@ import { Divisoria } from "../../components/Divisoria";
 import { ListaNumerosMegaSena } from "../../components/ListaNumerosMegaSena";
 import { useContexto } from "../../hooks";
 import { LoteriaProps } from "../../types";
+import { Carregando } from "../../components/Carregando";
 
-export default function Megasena () {
-    const {megasena} = useContexto();
+export default function Megasena() {
+    const { megasena } = useContexto();
 
     const acumulou = (sena: LoteriaProps) => {
         if (sena.acumulado) {
@@ -17,40 +18,45 @@ export default function Megasena () {
         }
         return `${sena.quantidadeGanhadores} GANHADORES`
     }
-    
-    return(
+
+    return (
         <>
-            <ResultadoStl>
-                {/* megasena */}
-                <LeftStl>
-                    <TituloStl>
-                        <LogoStl src={TrevoMegaSena} alt='Mega-sena' />
-                        <Titulo cor="verde" tamanho="grande">MEGA-SENA</Titulo>
-                    </TituloStl>
-                    <LeftContentStl>
-                        <Descricao>
-                            {`Estimativa de prêmio do próximo concurso. Sorteio em: ${megasena.dataProximoConcurso}`}
-                        </Descricao>
-                        <ValorStl>
-                            <Titulo cor="verde" tamanho="medio">
-                                {`R$${numeral(megasena.valorEstimadoProximoConcurso).format('0,0.00')}`}
-                            </Titulo>
-                        </ValorStl>
-                    </LeftContentStl>
-                </LeftStl>
-                <RightStl>
-                    <ListaNumerosMegaSena lista={megasena.dezenas} />
-                    <GanhadoresStl>
-                        <Titulo cor="azul" tamanho="grande">
-                            {acumulou(megasena)}
-                        </Titulo>
-                    </GanhadoresStl>
-                    <GanhadoresStl>
-                        <Descricao>{`Concurso ${megasena.numeroDoConcurso} - ${megasena.dataPorExtenso}`}</Descricao>
-                    </GanhadoresStl>
-                </RightStl>
-            </ResultadoStl>
-            <DivisoriaStl><Divisoria /></DivisoriaStl>
+            {
+                megasena.dataApuracao ? <>
+                    <ResultadoStl>
+                        {/* megasena */}
+                        <LeftStl>
+                            <TituloStl>
+                                <LogoStl src={TrevoMegaSena} alt='Mega-sena' />
+                                <Titulo cor="verde" tamanho="grande">MEGA-SENA</Titulo>
+                            </TituloStl>
+                            <LeftContentStl>
+                                <Descricao>
+                                    {`Estimativa de prêmio do próximo concurso. Sorteio em: ${megasena.dataProximoConcurso}`}
+                                </Descricao>
+                                <ValorStl>
+                                    <Titulo cor="verde" tamanho="medio">
+                                        {`R$${numeral(megasena.valorEstimadoProximoConcurso).format('0,0.00')}`}
+                                    </Titulo>
+                                </ValorStl>
+                            </LeftContentStl>
+                        </LeftStl>
+                        <RightStl>
+                            <ListaNumerosMegaSena lista={megasena.dezenas} />
+                            <GanhadoresStl>
+                                <Titulo cor="azul" tamanho="grande">
+                                    {acumulou(megasena)}
+                                </Titulo>
+                            </GanhadoresStl>
+                            <GanhadoresStl>
+                                <Descricao>{`Concurso ${megasena.numeroDoConcurso} - ${megasena.dataPorExtenso}`}</Descricao>
+                            </GanhadoresStl>
+                        </RightStl>
+                    </ResultadoStl>
+                    <DivisoriaStl><Divisoria /></DivisoriaStl>
+                </> :
+                    <Carregando />
+            }
         </>
     )
 }
@@ -80,7 +86,7 @@ const TituloStl = styled.span`
     margin-bottom: 20px;
 `;
 
-const LeftContentStl = styled.div `
+const LeftContentStl = styled.div`
     margin-left: 48px;
     display: flex;
     flex-direction: column;
