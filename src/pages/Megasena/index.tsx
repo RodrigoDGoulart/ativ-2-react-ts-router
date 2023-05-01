@@ -4,7 +4,7 @@ import { Titulo } from "../../components/Titulo";
 import numeral from "numeral";
 import { Descricao } from "../../components/Descricao";
 import { Divisoria } from "../../components/Divisoria";
-import { ListaNumerosMegaSena } from "../../components/ListaNumerosMegaSena";
+import { ListaNumeros } from "../../components/ListaNumerosMegaSena";
 import { useContexto } from "../../hooks";
 import { LoteriaProps } from "../../types";
 import { Carregando } from "../../components/Carregando";
@@ -42,7 +42,7 @@ export default function Megasena() {
                             </LeftContentStl>
                         </LeftStl>
                         <RightStl>
-                            <ListaNumerosMegaSena lista={megasena.dezenas} />
+                            <ListaNumeros cor="verde" lista={megasena.dezenas} />
                             <GanhadoresStl>
                                 <Titulo cor="azul" tamanho="grande">
                                     {acumulou(megasena)}
