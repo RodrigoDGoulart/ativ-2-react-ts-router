@@ -1,14 +1,16 @@
 interface PropsNumero {
     numero: string;
+    cor: 'verde' | 'azul-escuro';
 }
 
 interface PropsListaNumeros {
     lista?: string[];
+    cor: 'verde' | 'azul-escuro'
 }
 
 interface PropsTitulo {
     children: string;
-    cor: 'verde' | 'roxo' | 'azul';
+    cor: 'verde' | 'roxo' | 'azul' | 'azul-escuro';
     tamanho: 'grande' | 'medio';
 }
 
@@ -19,6 +21,7 @@ interface PropsDescricao {
 interface LoteriaContextProps {
     megasena: LoteriaProps;
     lotofacil: LoteriaProps;
+    quina: LoteriaProps;
 }
 
 interface LoteriaProps {

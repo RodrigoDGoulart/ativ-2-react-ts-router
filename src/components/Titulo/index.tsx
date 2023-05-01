@@ -6,7 +6,8 @@ export function Titulo (props: PropsTitulo) {
     const cores = {
         'verde': '#209869',
         'roxo':  '#930089',
-        'azul': '#0066b3'
+        'azul': '#0066b3',
+        'azul-escuro': '#260085'
     }
     
     const tamanho = {

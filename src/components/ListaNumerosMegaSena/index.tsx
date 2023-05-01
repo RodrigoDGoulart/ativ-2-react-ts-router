@@ -2,13 +2,17 @@ import styled from "styled-components";
 import { NumeroMegaSena } from "../NumeroMegaSena";
 import { PropsListaNumeros } from "../../types";
 
-export function ListaNumerosMegaSena ({lista}: PropsListaNumeros) {
+export function ListaNumeros ({lista, cor}: PropsListaNumeros) {
+    
+
     return(
         <>
             {lista && (<ListaStl>
                 {lista.map((n, index) => (
                     <ItemStl key={index}>
-                        <NumeroMegaSena numero={n} />
+                        <NumeroMegaSena
+                        cor={cor}
+                        numero={n} />
                     </ItemStl>
                 ))}
             </ListaStl>)}
