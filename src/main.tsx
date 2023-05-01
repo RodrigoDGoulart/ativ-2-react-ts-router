@@ -1,10 +1,10 @@
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import { ContextoProvider } from './context/contexto'
-import { Principal } from './pages/Principal'
+import AppRouter from './routes'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <ContextoProvider>
-    <Principal />
+    <AppRouter />
   </ContextoProvider>,
 )
