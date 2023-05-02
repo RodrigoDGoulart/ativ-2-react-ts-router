@@ -16,7 +16,7 @@ export default function Megasena() {
         if (sena.acumulado) {
             return 'ACUMULOU!';
         }
-        return `${sena.quantidadeGanhadores} GANHADORES`
+        return `${sena.quantidadeGanhadores} ${sena.quantidadeGanhadores > 1 ? 'GANHADORES' : 'GANHADOR'}`
     }
 
     return (
