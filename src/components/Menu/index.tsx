@@ -28,7 +28,7 @@ export default function Menu () {
     }
 
     useEffect(() => {
-        setSelecionado(loc.pathname);
+        setSelecionado(loc.pathname == '/' ? '/lotofacil' : loc.pathname);
     }, [])
     
     return(
