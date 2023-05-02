@@ -29,8 +29,7 @@ export default function Menu () {
 
     useEffect(() => {
         setSelecionado(loc.pathname == '/' ? '/lotofacil' : loc.pathname);
-    }, [])
-    
+    }, []);
     return(
         <List>
           {links.map((item: Links, index: number) => (
@@ -44,8 +43,7 @@ export default function Menu () {
             {color: '#aaa',
             cursor: 'default'} :
             {color: cores[item.cor]}
-            }>
-                
+            }> 
                 {item.label}
             </Item>
           ))}
