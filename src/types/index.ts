@@ -1,11 +1,11 @@
 interface PropsNumero {
     numero: string;
-    cor: 'verde' | 'azul-escuro';
+    cor?: 'verde' | 'azul-escuro';
 }
 
 interface PropsListaNumeros {
     lista?: string[];
-    cor: 'verde' | 'azul-escuro'
+    cor?: 'verde' | 'azul-escuro'
 }
 
 interface PropsTitulo {
