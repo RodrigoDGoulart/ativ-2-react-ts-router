@@ -13,7 +13,7 @@ export default function AppRouter () {
                     <Route path="/" index element={<Navigate to='/lotofacil' replace />} />
                     <Route path='/lotofacil' index element={<Lotofacil />} />
                     <Route path='/megasena' element={<Megasena />} />
-                    <Route path='/quina' element={<Quina />} />tg
+                    <Route path='/quina' element={<Quina />} />
             </Routes>
         </BrowserRouter>
     )

@@ -8,7 +8,7 @@ export function NumeroMegaSena ({numero, cor}: PropsNumero) {
     }
     
     const SpanSld = styled.div`
-        background-color: ${cores[cor]};
+        background-color: ${cores[cor ?? 'verde']};
         color: white;
         width: 48px;
         height: 48px;
